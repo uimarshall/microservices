@@ -1,0 +1,20 @@
+{
+	"name": "bookservice",
+	"version": "1.0.0",
+	"description": "",
+	"main": "books.js",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.7.12",
+		"nodemon": "^2.0.1"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"start": "node books.js",
+		"server": "nodemon books.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
