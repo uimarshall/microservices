@@ -1,19 +1,27 @@
 const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
 
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const bookRoutes = require("./routes/book");
+
+// If you don't initialise the app as 'const app = express()', data will not be posted to the database
+// The application will not know which app to use e.g 'app.use(bodyParser.json())'.
+const app = express();
 // Connect db
 mongoose.connect(
-	"mongodb+srv://marshall1:C0smos@1a2z@project-0-yyayt.mongodb.net/test?retryWrites=true&w=majority",
-	{ useNewUrlParser: true },
+	"mongodb://marshall:pass123@ds139934.mlab.com:39934/librarydb",
+	{ useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
 	() => {
 		console.log("Db is starting!");
 	}
 );
 
-app.get("", (req, res) => {
-	res.send("Way to start");
-});
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Routes middleware
+app.use("/api", bookRoutes);
 
 const port = process.env.PORT || 5000;
 
